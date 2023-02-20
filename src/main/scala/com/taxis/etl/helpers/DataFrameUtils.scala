@@ -7,7 +7,7 @@ import org.apache.spark.sql.{DataFrame, Dataset, Row}
 
 import scala.util.{Failure, Success, Try}
 
-class DataFrameUtils {
+object DataFrameUtils {
   val log: Logger = Logger.getLogger("ETL_logger")
 
   def filterByColumnAndPrefixEndsWith(df: DataFrame, columnName: String, endPrefix: String): Try[Array[Row]] = {
