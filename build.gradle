@@ -15,7 +15,7 @@ repositories {
 ext {
     scalaVersion = '2.12.15'
     scalaMinVersion = '2.12'
-    sparkVersion = '3.1.2'
+    sparkVersion = '3.2.3'
     awsVersion = '1.11.749'
 }
 
@@ -23,29 +23,30 @@ dependencies {
     compileOnly group: 'org.scala-lang', name: 'scala-library', version: scalaVersion
     compileOnly group: 'org.scala-lang', name: 'scala-reflect', version: scalaVersion
     compileOnly group: 'org.scala-lang', name: 'scala-compiler', version: scalaVersion
-    compile group: 'org.apache.spark', name : 'spark-avro_' + scalaMinVersion, version : sparkVersion
-    compile group: 'org.apache.spark', name: 'spark-mllib_' + scalaMinVersion, version: sparkVersion
+    compileOnly group: 'org.apache.spark', name: 'spark-mllib_2.11', version: '2.4.8'
+    //compile group: 'org.apache.spark', name : 'spark-avro_' + scalaMinVersion, version : sparkVersion
+    //compile group: 'org.apache.spark', name: 'spark-mllib_' + scalaMinVersion, version: sparkVersion
 
 
 
-    compile group: 'com.github.jengelman.gradle.plugins', name: 'shadow', version: '5.1.0'
-    compile group: 'org.testng', name: 'testng', version: '6.9.9'
+    //compile group: 'com.github.jengelman.gradle.plugins', name: 'shadow', version: '5.1.0'
+    //compile group: 'org.testng', name: 'testng', version: '6.9.9'
 
     compileOnly group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.17.2'
 
-    compile group: 'com.amazonaws', name: 'aws-java-sdk-s3', version: awsVersion
+    //compile group: 'com.amazonaws', name: 'aws-java-sdk-s3', version: awsVersion
 
     def withoutAWSJavaSDKCore = { exclude group: 'com.amazonaws', module: 'aws-java-sdk-core' }
-    compile group: 'com.amazonaws', name: 'amazon-kinesis-producer', version: '0.14.0', withoutAWSJavaSDKCore
+    //compile group: 'com.amazonaws', name: 'amazon-kinesis-producer', version: '0.14.0', withoutAWSJavaSDKCore
 
-    compile group: 'net.snowflake', name: 'spark-snowflake_' + scalaMinVersion, version: '2.10.0-spark_3.2'
-    compile group: 'net.snowflake', name: 'snowflake-jdbc', version:'3.13.17'
+    //compile group: 'net.snowflake', name: 'spark-snowflake_' + scalaMinVersion, version: '2.10.0-spark_3.2'
+    //compile group: 'net.snowflake', name: 'snowflake-jdbc', version:'3.13.17'
 
 
-    testCompile group: 'org.scalatest', name: 'scalatest_' + scalaMinVersion, version: '3.0.5'
-    testCompile group: 'org.apache.hadoop', name: 'hadoop-aws', version: '2.7.4'
-    testCompile group: 'org.apache.hadoop', name: 'hadoop-minicluster', version: '2.7.4'
-    testCompile group: 'org.mockito', name: 'mockito-core', version: '3.4.6'
-    testRuntime 'org.pegdown:pegdown:1.4.2'
+    //testCompile group: 'org.scalatest', name: 'scalatest_' + scalaMinVersion, version: '3.0.5'
+    //testCompile group: 'org.apache.hadoop', name: 'hadoop-aws', version: '2.7.4'
+    //testCompile group: 'org.apache.hadoop', name: 'hadoop-minicluster', version: '2.7.4'
+    //testCompile group: 'org.mockito', name: 'mockito-core', version: '3.4.6'
+    //testRuntime 'org.pegdown:pegdown:1.4.2'
     implementation 'log4j:log4j:1.2.17'
 }

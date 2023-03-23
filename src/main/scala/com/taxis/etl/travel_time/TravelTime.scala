@@ -18,4 +18,10 @@ object TravelTime {
     result.write.option("delimiter","\t").option("header","true").csv("results/csv")
     result.write.format("parquet").mode(SaveMode.Overwrite).save("results/parquet")
   }
+
+  /*PULocationID
+  DOLocationID
+  Trip_distance
+  Tolls_amount
+  Total_amount*/
 }
