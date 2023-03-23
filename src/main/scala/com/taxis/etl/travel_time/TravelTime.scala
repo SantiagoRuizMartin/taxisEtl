@@ -11,7 +11,7 @@ object TravelTime {
     Spark.init("myApp")
 
     //    Extract
-    val mainDf = getMainDataframe()
+    val mainDf = getMainDataframe
     //    Transform
     val df1 = transformMilesToKms(mainDf)
     val df3 = getTripTime(df1)
