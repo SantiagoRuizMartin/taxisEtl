@@ -30,7 +30,7 @@ gradle-app.setting
 # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
 /spark-pipeline/gradle/
 /es-query-parser/gradle/
-gradle/
+/gradle/wrapper/gradle-wrapper.jar
 
 #vim swap files
 *.swp*
