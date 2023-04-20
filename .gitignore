@@ -1,25 +1,17 @@
 ### IntelliJ IDEA ###
 /.idea
-/cloud-lambda/.idea/
-/spark-pipeline/.idea/
-/spark-pipeline/build/
-/es-query-parser/build/
 build
 *.iws
 *.iml
 *.ipr
 
 ### PyCharm
-/cloud-lambda/venv/
 *.zip
 
 # Gradle
-/spark-pipeline/.gradle
-/spark-pipeline/build/
-/spark-pipeline/out/
-/es-query-parser/.gradle
-/es-query-parser/build/
-/es-query-parser/out/
+/taxisEtl/.gradle
+/taxisEtl/build/
+/taxisEtl/out/
 .gradle
 build
 out
@@ -28,8 +20,7 @@ out
 gradle-app.setting
 
 # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
-/spark-pipeline/gradle/
-/es-query-parser/gradle/
+/taxisEtl/gradle/
 gradle/
 
 #vim swap files
