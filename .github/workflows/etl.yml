@@ -2,6 +2,20 @@ name: Run ETL Time Travel
 
 on:
   workflow_dispatch:
+    inputs:
+      class:
+        type: choice
+        description: Class
+        options:
+          - com.taxis.etl.travel_time.TravelTime
+          - com.taxis.etl.payments_distance.PaymentsDistance
+        default: com.taxis.etl.travel_time.TravelTime
+      hilos:
+        description: "Numero de hilos de procesador"
+        default: "1"
+      pi:
+        description: "Spark Pi Program"
+        default: "100"
 
 jobs:
   build:
@@ -28,8 +42,8 @@ jobs:
     - name: Download parquet file 2022
       run: curl -L https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2022-01.parquet -o yellow_tripdata_2022-01.parquet
       working-directory: ./build/libs/resources
-    - name: Run spark submit for time travel
-      run: spark-submit --class com.taxis.etl.travel_time.TravelTime --master local[1] taxisEtl.jar 100
+    - name: Run spark submit for ${{ github.event.inputs.class }}
+      run: spark-submit --class ${{ github.event.inputs.class }} --master local[${{ github.event.inputs.hilos }}] taxisEtl.jar ${{ github.event.inputs.pi }}
       working-directory: ./build/libs
     - name: Archive ETL results
       uses: actions/upload-artifact@v3
