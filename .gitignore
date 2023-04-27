@@ -27,3 +27,7 @@ gradle/
 
 #vim swap files
 *.swp*
+
+.metals
+.vscode
+bin
