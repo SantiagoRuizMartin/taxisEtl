@@ -6,34 +6,20 @@ plugins {
 }
 
 repositories {
-    jcenter()
     mavenCentral()
-    maven {
-        url "https://redshift-maven-repository.s3-website-us-east-1.amazonaws.com/release"
-    }
 }
 
 ext {
     scalaVersion = '2.12.15'
     scalaMinVersion = '2.12'
     sparkVersion = '3.2.3'
-    awsVersion = '1.11.749'
 }
 
 dependencies {
-    compileOnly group: 'org.scala-lang', name: 'scala-library', version: scalaVersion
-    compileOnly group: 'org.scala-lang', name: 'scala-reflect', version: scalaVersion
-    compileOnly group: 'org.scala-lang', name: 'scala-compiler', version: scalaVersion
-    compileOnly group: 'org.apache.spark', name: 'spark-mllib_2.11', version: '2.4.8'
-    //compile group: 'org.testng', name: 'testng', version: '6.9.9'
-
-    compileOnly group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.17.2'
-
-
-    //testCompile group: 'org.scalatest', name: 'scalatest_' + scalaMinVersion, version: '3.0.5'
-    //testCompile group: 'org.apache.hadoop', name: 'hadoop-aws', version: '2.7.4'
-    //testCompile group: 'org.apache.hadoop', name: 'hadoop-minicluster', version: '2.7.4'
-    //testCompile group: 'org.mockito', name: 'mockito-core', version: '3.4.6'
-    //testRuntime 'org.pegdown:pegdown:1.4.2'
+    implementation group: 'org.scala-lang', name: 'scala-library', version: scalaVersion
+    implementation group: 'org.scala-lang', name: 'scala-reflect', version: scalaVersion
+    implementation group: 'org.scala-lang', name: 'scala-compiler', version: scalaVersion
+    implementation group: 'org.apache.spark', name: 'spark-mllib_2.11', version: '2.4.8'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.17.2'
     implementation 'log4j:log4j:1.2.17'
 }
