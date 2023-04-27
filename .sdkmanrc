@@ -1,0 +1,5 @@
+# Enable auto-env through the sdkman_auto_env config
+# Add key=value pairs of SDKs to use below
+java=8.0.362-amzn
+hadoop=2.7.7
+spark=3.1.2
