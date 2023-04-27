@@ -1,0 +1,36 @@
+name: Run ETL Time Travel
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout project sources
+      uses: actions/checkout@v2
+    - name: Setup Gradle
+      uses: gradle/gradle-build-action@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+    - uses: vemonet/setup-spark@v1
+      with:
+        spark-version: '3.1.2'
+        hadoop-version: '2.7'
+    - run: spark-submit --version
+    - name: Run build with Gradle Wrapper
+      run: ./gradlew assemble
+    - run: mkdir ./build/libs/resources
+    - name: Download parquet file 2020
+      run: curl -L https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2020-01.parquet -o yellow_tripdata_2020-01.parquet
+      working-directory: ./build/libs/resources
+    - name: Download parquet file 2021
+      run: curl -L https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2021-01.parquet -o yellow_tripdata_2021-01.parquet
+      working-directory: ./build/libs/resources
+    - name: Download parquet file 2022
+      run: curl -L https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2022-01.parquet -o yellow_tripdata_2022-01.parquet
+      working-directory: ./build/libs/resources
+    - name: Run spark submit for time travel
+      run: spark-submit --class com.taxis.etl.travel_time.TravelTime --master local[1] taxisEtl.jar 100
+      working-directory: ./build/libs
