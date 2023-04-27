@@ -34,3 +34,8 @@ jobs:
     - name: Run spark submit for time travel
       run: spark-submit --class com.taxis.etl.travel_time.TravelTime --master local[1] taxisEtl.jar 100
       working-directory: ./build/libs
+    - name: Archive ETL results
+      uses: actions/upload-artifact@v3
+      with:
+        name: results
+        path: build/libs/results
