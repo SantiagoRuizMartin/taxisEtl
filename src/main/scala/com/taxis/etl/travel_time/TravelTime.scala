@@ -22,11 +22,8 @@ object TravelTime {
 
   //  Extract *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*--*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
   def getMainDataframe: DataFrame = {
-    val df1 = DataFrameUtils.getDataframeFromParquet("resources/yellow_tripdata_2020-01.parquet")
-    val df2 = DataFrameUtils.getDataframeFromParquet("resources/yellow_tripdata_2021-01.parquet")
-    val df3 = DataFrameUtils.getDataframeFromParquet("resources/yellow_tripdata_2022-01.parquet")
-
-    df1.union(df2).union(df3)
+    val parquets = Array("resources/yellow_tripdata_2020-01.parquet", "resources/yellow_tripdata_2021-01.parquet", "resources/yellow_tripdata_2022-01.parquet")
+    parquets.map(DataFrameUtils.getDataframeFromParquet _).reduce((x: DataFrame, y: DataFrame) => x.union(y))
   }
 
   // Transform *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*--*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
