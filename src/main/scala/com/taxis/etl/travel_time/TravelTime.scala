@@ -1,5 +1,6 @@
 package com.taxis.etl.travel_time
 
+import com.taxis.etl.extract.ReadFromEnv
 import com.taxis.etl.helpers.DataFrameUtils
 import com.taxis.etl.utils.Spark
 import org.apache.spark.sql.{DataFrame, SaveMode}
@@ -22,7 +23,7 @@ object TravelTime {
 
   //  Extract *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*--*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
   def getMainDataframe: DataFrame = {
-    val parquets = Array("resources/yellow_tripdata_2020-01.parquet", "resources/yellow_tripdata_2021-01.parquet", "resources/yellow_tripdata_2022-01.parquet")
+    val parquets = ReadFromEnv.readList()
     parquets.map(DataFrameUtils.getDataframeFromParquet _).reduce((x: DataFrame, y: DataFrame) => x.union(y))
   }
 
