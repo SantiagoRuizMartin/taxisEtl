@@ -120,6 +120,8 @@ for example using bash
 ```bash
 export TAXIS_ETL_FILES=yellow_tripdata_2020-01.parquet,yellow_tripdata_2021-01.parquet,yellow_tripdata_2022-01.parquet
 export TAXIS_ETL_DOWNLOAD_FOLDER=downloads
+export TAXIS_ETL_BASE_URL=https://d37ci6vzurychx.cloudfront.net/trip-data
+export TAXIS_ETL_DOWNLOAD_FILES=true
 ```
 
 Scala is used to run the compiled Java file that contains all the instructions. In this example we are going to run specific classes defined in the code

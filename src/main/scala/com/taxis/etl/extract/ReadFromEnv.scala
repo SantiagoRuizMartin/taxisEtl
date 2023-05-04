@@ -15,6 +15,6 @@ object ReadFromEnv {
     }
 
     def readDownloadFiles(): Boolean = {
-        sys.env.getOrElse("TAXIS_ETL_DOWNLOAD_FILES", "false").eq("true")
+        sys.env.getOrElse("TAXIS_ETL_DOWNLOAD_FILES", "false").equals("true")
     }
 }

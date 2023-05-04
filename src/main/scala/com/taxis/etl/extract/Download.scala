@@ -9,6 +9,7 @@ import scala.language.postfixOps
 
 object Download {
     def fileDownloader(url: String, filename: String): String = {
+        System.out.println("Downloading " + url + " to " + filename)
         new URL(url) #> new File(filename) !!
     }
 
