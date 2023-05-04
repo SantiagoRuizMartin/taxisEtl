@@ -1,5 +1,6 @@
 package com.taxis.etl.payments_distance
 
+import com.taxis.etl.extract.Extract
 import com.taxis.etl.helpers.DataFrameUtils
 import com.taxis.etl.utils.Spark
 import org.apache.spark.sql.{DataFrame, SaveMode}
@@ -15,8 +16,8 @@ object PaymentsDistance {
 
   def getDataframes(): DataFrame = {
     // Get data from three files
-    val parquets = Array("resources/yellow_tripdata_2020-01.parquet", "resources/yellow_tripdata_2021-01.parquet", "resources/yellow_tripdata_2022-01.parquet")
-    val df_concat = parquets.map(DataFrameUtils.getDataframeFromParquet _)
+    val parquets = Extract.getDownloadedFilenames()
+    val df_concat = parquets.map(DataFrameUtils.getDataframeFromParquet)
       // Filter by the desired columns
       .map((x: DataFrame) => x.select("Trip_distance", "PULocationID", "DOLocationID", "Tolls_amount", "Total_amount"))
       // Concatenating the dataframes

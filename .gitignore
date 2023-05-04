@@ -31,3 +31,5 @@ gradle/
 .metals
 .vscode
 bin
+downloads
+results
