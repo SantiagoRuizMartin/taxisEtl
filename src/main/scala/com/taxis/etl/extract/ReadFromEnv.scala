@@ -13,4 +13,8 @@ object ReadFromEnv {
     def readBaseUrl(): Option[String] = {
         sys.env.get("TAXIS_ETL_BASE_URL")
     }
+
+    def readDownloadFiles(): Boolean = {
+        sys.env.getOrElse("TAXIS_ETL_DOWNLOAD_FILES", "false").eq("true")
+    }
 }

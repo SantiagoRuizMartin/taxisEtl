@@ -16,8 +16,8 @@ object PaymentsDistance {
 
   def getDataframes(): DataFrame = {
     // Get data from three files
-    val parquets = Extract.getFilenames()
-    val df_concat = parquets.map(DataFrameUtils.getDataframeFromParquet _)
+    val parquets = Extract.getDownloadedFilenames()
+    val df_concat = parquets.map(DataFrameUtils.getDataframeFromParquet)
       // Filter by the desired columns
       .map((x: DataFrame) => x.select("Trip_distance", "PULocationID", "DOLocationID", "Tolls_amount", "Total_amount"))
       // Concatenating the dataframes

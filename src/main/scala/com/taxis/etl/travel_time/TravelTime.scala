@@ -23,8 +23,8 @@ object TravelTime {
 
   //  Extract *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*--*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
   def getMainDataframe: DataFrame = {
-    val parquets = Extract.getFilenames()
-    parquets.map(DataFrameUtils.getDataframeFromParquet _).reduce((x: DataFrame, y: DataFrame) => x.union(y))
+    val parquets = Extract.getDownloadedFilenames()
+    parquets.map(DataFrameUtils.getDataframeFromParquet).reduce((x: DataFrame, y: DataFrame) => x.union(y))
   }
 
   // Transform *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*--*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-

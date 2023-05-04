@@ -20,6 +20,8 @@ on:
 env:
   TAXIS_ETL_FILES: yellow_tripdata_2020-01.parquet,yellow_tripdata_2021-01.parquet,yellow_tripdata_2022-01.parquet
   TAXIS_ETL_DOWNLOAD_FOLDER: downloads
+  TAXIS_ETL_BASE_URL: https://d37ci6vzurychx.cloudfront.net/trip-data
+  TAXIS_ETL_DOWNLOAD_FILES: true
 
 jobs:
   build:
@@ -37,15 +39,6 @@ jobs:
     - name: Run build with Gradle Wrapper
       run: ./gradlew assemble
     - run: mkdir ./downloads
-    - name: Download parquet file 2020
-      run: curl -L https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2020-01.parquet -o yellow_tripdata_2020-01.parquet
-      working-directory: ./downloads
-    - name: Download parquet file 2021
-      run: curl -L https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2021-01.parquet -o yellow_tripdata_2021-01.parquet
-      working-directory: ./downloads
-    - name: Download parquet file 2022
-      run: curl -L https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2022-01.parquet -o yellow_tripdata_2022-01.parquet
-      working-directory: ./downloads
     - name: Run spark submit for ${{ github.event.inputs.class }}
       run: spark-submit --class ${{ github.event.inputs.class }} --master local[${{ github.event.inputs.hilos }}] build/libs/taxisEtl.jar ${{ github.event.inputs.pi }}
     - name: Archive ETL results
