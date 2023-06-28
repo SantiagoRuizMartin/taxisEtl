@@ -3,9 +3,15 @@ name: Run ETL Time Travel
 on:
   workflow_dispatch:
     inputs:
+      origen:
+        description: "Origen desde donde se descargan los archivos"
+        default: "https://d37ci6vzurychx.cloudfront.net/trip-data"
+      archivos:
+        description: "Archivos a ser procesados"
+        default: "yellow_tripdata_2020-01.parquet,yellow_tripdata_2021-01.parquet,yellow_tripdata_2022-01.parquet"
       class:
         type: choice
-        description: Class
+        description: Clase java desde la que ejecuta el ETL
         options:
           - com.taxis.etl.travel_time.TravelTime
           - com.taxis.etl.payments_distance.PaymentsDistance
@@ -18,9 +24,9 @@ on:
         default: "100"
 
 env:
-  TAXIS_ETL_FILES: yellow_tripdata_2020-01.parquet,yellow_tripdata_2021-01.parquet,yellow_tripdata_2022-01.parquet
+  TAXIS_ETL_FILES: ${{ github.event.inputs.archivos }}
   TAXIS_ETL_DOWNLOAD_FOLDER: downloads
-  TAXIS_ETL_BASE_URL: https://d37ci6vzurychx.cloudfront.net/trip-data
+  TAXIS_ETL_BASE_URL: ${{ github.event.inputs.origen }}
   TAXIS_ETL_DOWNLOAD_FILES: true
 
 jobs:
