@@ -62,7 +62,7 @@ sdk env
 
 #### 1. Install Java
 
-* Install the java development kit (JDK 1.8.0)
+* Install the java development kit it must be JDK 1.8.0
 
 #### 2. Create environment variable for Java
 
@@ -113,14 +113,19 @@ We recommend to use IntelliJ Community Edition, which support Scala installing t
 
 Setup the following environment variables
 
-TAXIS_ETL_FILES, TAXIS_ETL_DOWNLOAD_FOLDER
+TAXIS_ETL_FILES, TAXIS_ETL_DOWNLOAD_FOLDER, TAXIS_ETL_BASE_URL, TAXIS_ETL_DOWNLOAD_FILES
 
-for example using bash
+Please configure the following environment variables
 
 ```bash
 export TAXIS_ETL_FILES=yellow_tripdata_2020-01.parquet,yellow_tripdata_2021-01.parquet,yellow_tripdata_2022-01.parquet
 export TAXIS_ETL_DOWNLOAD_FOLDER=downloads
 export TAXIS_ETL_BASE_URL=https://d37ci6vzurychx.cloudfront.net/trip-data
+export TAXIS_ETL_DOWNLOAD_FILES=false
+```
+
+For the first time execution download the files by changing the environment variable to true
+```bash
 export TAXIS_ETL_DOWNLOAD_FILES=true
 ```
 
@@ -129,13 +134,12 @@ Scala is used to run the compiled Java file that contains all the instructions. 
 * Compile the project using Gradle.
   * If you are in IntelliJ, go to the right side on your window and select the Gradle tab
   * Double-click on "`clean`", then "`assemble`" to compile the project
-* Open a new CMD window and execute this command: `spark-shell`. This will start Spark on your machine.
-* A new task will be run using the clas definition in the code
-  * Open a new CMD window and go to the generated .jar: `cd base_path\ETL\taxisEtl\build\libs`, where base_path should be replaced according to your project location
-  * Run the following command to execute the class:
-    * `spark-submit --class com.taxis.etl.travel_time.TravelTime --master local[8] taxisEtl.jar 100`
-    * `spark-submit --class com.taxis.etl.payments_distance.PaymentsDistance --master local[8] taxisEtl.jar 100`
-  * Wait until the execution finishes and verify the results are in the folder `cd base_path\ETL\taxisEtl\build\libs\results`
+* Create the downloads directory
+  * run the command `mkdir downloads`
+* Run the following command to execute the class:
+  * `spark-submit --class com.taxis.etl.travel_time.TravelTime --master "local[8]" build/libs/taxisEtl.jar 100`
+  * `spark-submit --class com.taxis.etl.payments_distance.PaymentsDistance --master "local[8]" build/libs/taxisEtl.jar 100`
+  * Wait until the execution finishes and verify the results are in the folder `cd results`
 
 ### By
 
