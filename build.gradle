@@ -1,5 +1,4 @@
 plugins {
-    id "com.github.maiflai.scalatest" version "0.19"
     id "ua.eshepelyuk.ManifestClasspath" version "1.0.0"
     id 'scala'
     id 'java'
@@ -22,4 +21,10 @@ dependencies {
     implementation group: 'org.apache.spark', name: 'spark-mllib_2.11', version: '2.4.8'
     implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.17.2'
     implementation 'log4j:log4j:1.2.17'
+
+    testImplementation 'junit:junit:4.13.2' 
+    testImplementation "org.scalatest:scalatest_2.12:3.2.14"
+    testImplementation "org.scalatestplus:junit-4-13_2.12:3.2.2.0"
+
+    testRuntimeOnly "org.scala-lang.modules:scala-xml_2.12:1.2.0"
 }
